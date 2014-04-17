@@ -3,9 +3,11 @@ StackLogger
 
 Logger [Stack](http://stackphp.com/) middleware that logs Request and Response.
 
-[![Build
-Status](https://travis-ci.org/h4cc/StackLogger.png)](https://travis-ci.org/h4cc/StackLogger)
-
+[![Build Status](https://travis-ci.org/h4cc/StackLogger.png)](https://travis-ci.org/h4cc/StackLogger)
+[![HHVM Status](http://hhvm.h4cc.de/badge/silpion/stack-logger.png)](http://hhvm.h4cc.de/package/silpion/stack-logger)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/h4cc/StackLogger/badges/quality-score.png?s=732f86ff20041606d86bef93a8ad2d5e7c6a3a9f)](https://scrutinizer-ci.com/g/h4cc/StackLogger/)
+[![Code Coverage](https://scrutinizer-ci.com/g/h4cc/StackLogger/badges/coverage.png?s=2e687da19667dfab1467bf6f143c6a1742418ce4)](https://scrutinizer-ci.com/g/h4cc/StackLogger/)
+[![Project Status](http://stillmaintained.com/h4cc/StackLogger.png)](http://stillmaintained.com/h4cc/StackLogger)
 
 Usage
 -----
