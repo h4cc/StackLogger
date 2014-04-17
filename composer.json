@@ -1,0 +1,26 @@
+{
+    "name": "silpion/stack-logger",
+    "description": "Logger Stack middleware for logging request and responses.",
+    "keywords": [ "stack", "logger", "request", "response", "psr3" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Julius Beckmann",
+            "email": "beckmann@silpion.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/http-foundation": "~2.1",
+        "symfony/http-kernel": "~2.1"
+    },
+    "require-dev": {
+        "silex/silex": "~1.2",
+        "stack/builder": "~1.0",
+        "monolog/monolog": "~1.8",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": { "Silpion\\Stack\\": "src" }
+    }
+}
