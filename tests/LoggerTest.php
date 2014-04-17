@@ -24,6 +24,9 @@ class LoggerTest extends PHPUnit_Framework_TestCase
     /** @var \PHPUnit_Framework_MockObject_MockObject | HttpKernelInterface */
     protected $appMock;
 
+    /** @var Response */
+    protected $response;
+
     /** @var \PHPUnit_Framework_MockObject_MockObject | LoggerInterface */
     protected $loggerMock;
 
@@ -33,6 +36,12 @@ class LoggerTest extends PHPUnit_Framework_TestCase
           ->setMethods(array('handle'))
           ->getMockForAbstractClass();
 
+        $this->response = new Response('content', 200);
+
+        $this->appMock->expects($this->any())
+          ->method('handle')
+          ->will($this->returnValue($this->response));
+
         $this->loggerMock = $this->getMockBuilder('\Psr\Log\LoggerInterface')
           ->setMethods(array('log'))
           ->getMockForAbstractClass();
@@ -41,14 +50,6 @@ class LoggerTest extends PHPUnit_Framework_TestCase
     public function testHandleMasterRequest()
     {
         $that = $this;
-
-        $request = Request::create('/');
-        $response = new Response('content', 200);
-
-        $this->appMock->expects($this->once())
-          ->method('handle')
-          ->with($request)
-          ->will($this->returnValue($response));
 
         $this->loggerMock->expects($this->at(0))
           ->method('log')
@@ -110,42 +111,26 @@ class LoggerTest extends PHPUnit_Framework_TestCase
 
         $logger = new Logger($this->appMock, array('logger' => $this->loggerMock));
 
-        $logger->handle($request, HttpKernelInterface::MASTER_REQUEST);
+        $logger->handle(Request::create('/'), HttpKernelInterface::MASTER_REQUEST);
     }
 
 
     public function testNotHandlingSubRequest()
     {
-        $request = Request::create('/');
-        $response = new Response('content', 200);
-
-        $this->appMock->expects($this->once())
-          ->method('handle')
-          ->with($request)
-          ->will($this->returnValue($response));
-
         $this->loggerMock->expects($this->never())->method('log');
 
         $logger = new Logger($this->appMock, array('logger' => $this->loggerMock));
 
-        $logger->handle($request, HttpKernelInterface::SUB_REQUEST);
+        $logger->handle(Request::create('/'), HttpKernelInterface::SUB_REQUEST);
     }
 
     public function testHandlingSubRequest()
     {
-        $request = Request::create('/');
-        $response = new Response('content', 200);
-
-        $this->appMock->expects($this->once())
-          ->method('handle')
-          ->with($request)
-          ->will($this->returnValue($response));
-
         $this->loggerMock->expects($this->exactly(2))
           ->method('log');
 
         $logger = new Logger($this->appMock, array('logger' => $this->loggerMock, 'log_sub_request' => true));
 
-        $logger->handle($request, HttpKernelInterface::SUB_REQUEST);
+        $logger->handle(Request::create('/'), HttpKernelInterface::SUB_REQUEST);
     }
 }

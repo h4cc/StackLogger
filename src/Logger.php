@@ -64,11 +64,6 @@ class Logger implements HttpKernelInterface
     {
         $msg = sprintf('Request "%s %s"', $request->getMethod(), $request->getRequestUri());
 
-        $this->log($msg, $this->requestToArray($request));
-    }
-
-    private function requestToArray(Request $request)
-    {
         $map = array(
           'request_method' => $request->getMethod(),
           'request_uri' => $request->getRequestUri(),
@@ -93,7 +88,7 @@ class Logger implements HttpKernelInterface
             $map['request_client_ips'] = $request->getClientIps();
         }
 
-        return $map;
+        $this->log($msg, $map);
     }
 
     private function logResponse(Response $response, Request $request)
@@ -105,12 +100,7 @@ class Logger implements HttpKernelInterface
           $request->getRequestUri()
         );
 
-        $this->log($msg, $this->responseToArray($response));
-    }
-
-    private function responseToArray(Response $response)
-    {
-        return array(
+        $context = array(
           'response_status_code' => $response->getStatusCode(),
           'response_charset' => $response->getCharset(),
           'response_date' => $response->getDate(),
@@ -122,6 +112,8 @@ class Logger implements HttpKernelInterface
           'response_ttl' => $response->getTtl(),
           'response_vary' => $response->getVary(),
         );
+
+        $this->log($msg, $context);
     }
 
     /**
