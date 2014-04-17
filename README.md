@@ -9,6 +9,7 @@ Logger [Stack](http://stackphp.com/) middleware that logs Request and Response.
 [![Code Coverage](https://scrutinizer-ci.com/g/h4cc/StackLogger/badges/coverage.png?s=2e687da19667dfab1467bf6f143c6a1742418ce4)](https://scrutinizer-ci.com/g/h4cc/StackLogger/)
 [![Project Status](http://stillmaintained.com/h4cc/StackLogger.png)](http://stillmaintained.com/h4cc/StackLogger)
 
+
 Usage
 -----
 
