@@ -35,7 +35,7 @@ class Logger implements HttpKernelInterface
      * @param HttpKernelInterface $app
      * @param array $options
      */
-    public function __construct(HttpKernelInterface $app, array $options = [])
+    public function __construct(HttpKernelInterface $app, array $options = array())
     {
         $this->app = $app;
         $this->container = $this->setupContainer($options);
