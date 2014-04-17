@@ -137,6 +137,7 @@ class Logger implements HttpKernelInterface
      */
     private function setupContainer(array $options)
     {
-        return (new ContainerBuilder())->process(new Pimple(), $options);
+        $containerBuilder = new ContainerBuilder();
+        return $containerBuilder->process(new Pimple(), $options);
     }
 }
