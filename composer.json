@@ -16,6 +16,9 @@
         "symfony/http-foundation": "~2.1",
         "symfony/http-kernel": "~2.1"
     },
+    "provide": {
+        "psr/log-implementation": "1.0.0"
+    },
     "require-dev": {
         "silex/silex": "~1.2",
         "stack/builder": "~1.0",
